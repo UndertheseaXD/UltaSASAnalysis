@@ -22,8 +22,71 @@ There are 52 stocks in this dataset from the Consumer Discretionary Components i
 
 The stocks that I selected are as follows: Amazon, Bath & Body Works, Inc., Etsy, Expedia Group, Lululemon Athletica, Marriott International, MGM Resorts, Nike, Inc., Pool Corporation, Ralph Lauren Corporation, Starbucks, Tapestry, Inc., Wynn Resorts, Ross Stores, Royal Caribbean, and Yum! Brands. All of these companies fall into either entertainment, fashion, luxury, or lifestyle which are all adjacent to the products that Ulta sells.
 
-![Alt text](./Images/Fig1.1.png)
-<span style="font-size: 8px;">Fig. 1.1
-
-
 Firstly, let's look at the trends of all of the stocks over the given timeframe. We can see in Fig 1.1 the closing prices of each day from April 2023 to March 2024. The stocks that are in Fig 1.1 are Ulta, Bath and Body Works, Etsy, and Amazon. We can see that for all stocks except Amazon, there is a distinct drop around early November. This drop is seen in Amazon, but it is much less significant when compared to the other three stocks.
+
+![Alt text](./Images/Fig1.1.png)
+Fig. 1.1
+
+The next set of stocks are Expedia, Lululemon, Marriott, and MGM Resorts. We see a similar pattern with distinct drops around early November in Expedia and MGM, while in Lululemon and Marriott we see pretty consistent growth across the year. There is an interesting spike around February in Expedia's stock where the price quickly drops and then stabilizes, this could be due to a stock split but more investigation would be needed to confirm that.
+
+![Alt text](./Images/Fig1.2.png)
+Fig. 1.2
+
+The next set of stocks we have in Fig 1.3 are the Pool Corporation, Ralph Lauren, Ross Stores, and Nike. There aren’t any crazy patterns that would stand out, we see the drop in prices around November in the Pool corporation, and early October in Nike but Nike's stock quickly shoots back up during December which makes sense given they are a very popular brand for fashion as well as a lifestyle over the holidays. Apart from that Ralph Lauren has had steady growth from their lowest point in late October with a large jump around March of 2024. Ross stores has a very similar pattern with the stock price steadily growing since October.  Overall no unexpected patterns or extreme outliers.
+
+![Alt text](./Images/Fig1.3.png)
+Fig. 1.3
+
+In Fig 1.4 we have Royal Caribbean, Starbucks, Tapestry Inc., and Wynn Resorts.  For Wynn Resorts we see a pattern of very high stock prices during the summer months a steady decline leading into the holidays and then a resurgence at the beginning of the new year. For Starbucks, it goes against the trend of being at its lowest in November and has a large spike just at the beginning of November (probably a byproduct of the legendary pumpkin spice latte becoming available at this time).  There is an interesting trend with Tapestry Inc. as there is a huge drop starting around August which hits a low around November, I am not sure what could have caused this but it might be an outlier during that time stretch. 
+
+![Alt text](./Images/Fig1.4.png)
+Fig. 1.4
+
+The last stock in our initial variable pool is Yum! Which is a fast-food corporation that owns many large restaurant brands. As seen in Fig 1.5 its performance also has that distinct drop around November but overall is fairly steady with no strange patterns.
+
+![Alt text](./Images/Fig1.5.png)
+Fig. 1.5
+
+Overall the stocks selected share common behaviors and don't seem to have any wild stock fluctuations apart from the fairly consistent drop in November. Overall the sample of stocks we have covers a lot of industries that relate to luxury lifestyle, travel, and fashion which I think are all related to Ulta's primary market and therefore should be able to predict its stock price given a set combination of stocks.
+
+## Methodology
+
+For the development of this model, SAS was used, primarily Proc reg for analyzing multiple regression as well as for the variable selecting methods for R-squared, R-squared adjusted, and Cp. Proc GLMselect was also used for variable selection regarding the PRESS statistic. Proc GLM and PLM were used to identify interaction terms through interacting plots and all hypothesis tests for second-order terms were done through the Proc reg test statement. For the visualization of the correlation between different variables and the time series visualizations of the different stocks, Tableau was used.
+
+## Correlation Analysis
+
+To assess the contribution of variables, we examined correlations between the dependent variable and potential independent variables. This analysis helps identify which variables are highly correlated with each other, aiding in better prediction of the dependent variable. The Proc Corr function in SAS was used for this analysis, yielding the following results. In Fig 2.1, seven variables exhibit correlation coefficients above 0.5, while the remainder are below 0.5, with Starbucks showing the lowest coefficient at 0.15.
+
+![Alt text](./Images/Fig2.1.png)
+Fig. 2.1
+
+We can see that the trend line shows us a positive correlation for all of the variables with the 2 strongest correlations being that of Bath and Body Works and Etsy. Amazon has an interesting pattern where after Ulta hits 500 per share we see a fork on either side of the trend line which is a strange behavior that might cause it to not be a good variable for predicting the higher values of Ulta stock price.
+
+![Alt text](./Images/Fig2.2.png)
+Fig. 2.2
+
+In Fig 2.2 we can see that the trend in the correlation between Ulta and other lifestyle brands continues. We see the same forking pattern in Marriott that we see in Amazon meaning that we might not want to use it as a predictor of Ulta. Another strange trend we see is that of MGM resorts where there is a quadratic shape to the data, this indicates that using a squared term for MGM might yield better results overall in the modeling process. Lululemon has an interesting pattern where it seems to spread out on either side of the trend line as Ulta stock price increases.
+
+![Alt text](./Images/Fig2.3.png)
+Fig. 2.3
+
+In Fig 2.3 we see more of the fork pattern in Tapestry Inc. and Ralph Lauren. 
+Overall the rest follow a decent correlation with Ulta and don't have any strange patterns. In Fig 2.5 below we can see that for Ross stores there is a dramatic fork in as Ulta stock price gets into the higher ranges.
+
+
+![Alt text](./Images/Fig2.4.png)
+Fig. 2.4
+
+Overall the fork pattern is most likely due to the lurking variable that is time given the data is time series so over a given period fluctuations at different times could lead to data points on either side of the trend line. There is a positive correlation in all of the variables with Ulta, but this could be just due to market conditions so the correlation alone isn’t enough meaning that further regression analysis is required.
+
+
+## Variable Selection
+
+After reviewing the raw data and ensuring there are no outliers or unusual behaviors, we employed advanced techniques for variable selection in the regression model. The first technique used was stepwise regression, which evaluates all possible combinations of variables and selects the model with the best overall performance. From the initial 14 independent variables, the resulting model identified by stepwise regression includes Bath and Body Works, Amazon, Etsy, Lululemon, Marriott, Nike, Ralph Lauren, Tapestry, Wynn Resorts, and Yum Brands. This initial step eliminated 4 variables from the initial pool.
+
+The next step involved checking for multicollinearity, where two variables contribute redundant information. This was assessed using the Variance Inflation Factor (VIF), with the criterion that all VIF values should be less than 10. The Proc reg command in SAS was used to compute the VIF for all independent variables.
+
+![Alt text](./Images/Table1.png)
+
+
+
