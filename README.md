@@ -23,7 +23,7 @@ There are 52 stocks in this dataset from the Consumer Discretionary Components i
 The stocks that I selected are as follows: Amazon, Bath & Body Works, Inc., Etsy, Expedia Group, Lululemon Athletica, Marriott International, MGM Resorts, Nike, Inc., Pool Corporation, Ralph Lauren Corporation, Starbucks, Tapestry, Inc., Wynn Resorts, Ross Stores, Royal Caribbean, and Yum! Brands. All of these companies fall into either entertainment, fashion, luxury, or lifestyle which are all adjacent to the products that Ulta sells.
 
 ![Alt text](./Images/Fig1.1.png)
-* Fig 1.1
+<span style="font-size: 10px;">Fig. 1.1
 
 
 Firstly, let's look at the trends of all of the stocks over the given timeframe. We can see in Fig 1.1 the closing prices of each day from April 2023 to March 2024. The stocks that are in Fig 1.1 are Ulta, Bath and Body Works, Etsy, and Amazon. We can see that for all stocks except Amazon, there is a distinct drop around early November. This drop is seen in Amazon, but it is much less significant when compared to the other three stocks.
