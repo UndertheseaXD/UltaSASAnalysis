@@ -12,10 +12,6 @@ The next step was to add second-order terms, with all 10 original variables bein
 
 E(Ulta) = -992.65411 + 26.25259(BBWI) + 3.44117(LULU) + 28.82128(MGM) - 5.79296(NKE) + 1.60998(RL) - 9.22255(WYNN) + 0.58940(YUM) - 0.332676(BBWI^2) + 0.58108(MGM^2) + 0.09340(NKE^2) + 0.22493(WYNN^2) - 0.03203(LULU * NKE) - 0.80242(MGM * WYNN)
 
-<p align="center">
-  <img src="https://latex.codecogs.com/png.image?\dpi{110}\bg{white}E(Ulta)=-992.65411+26.25259(BBWI)+3.44117(LULU)+28.82128(MGM)-5.79296(NKE)+1.60998(RL)-9.22255(WYNN)+0.58940(YUM)-0.332676(BBWI^2)+0.58108(MGM^2)+0.09340(NKE^2)+0.22493(WYNN^2)-0.03203(LULU*NKE)-0.80242(MGM*WYNN)" alt="E(Ulta) = -992.65411 + 26.25259(BBWI) + 3.44117(LULU) + 28.82128(MGM) - 5.79296(NKE) + 1.60998(RL) - 9.22255(WYNN) + 0.58940(YUM) - 0.332676(BBWI^2) + 0.58108(MGM^2) + 0.09340(NKE^2) + 0.22493(WYNN^2) - 0.03203(LULU * NKE) - 0.80242(MGM * WYNN)">
-</p>
-
 Residual analysis was then done to ensure that the assumptions of equal variances and normality hold true. The residual versus predicted, fit-mean, Cook's D, and histogram of the residuals all showed the expected behaviors that support these assumptions which are necessary for regression validity. The overall R-squared adjusted was 0.91, which means that 91% of the variation in Ulta’s stock price was accounted for by the model. All metrics of performance were met, meaning that this model is performing well and is trustworthy.
 
 The next steps for this model would be to explore all of the relevant interaction terms and incorporate them into the model to see what effect they might have on improving the overall performance. Once this is checked, more stocks that relate to Ulta’s consumer base outside of the Consumer Discretionary Components could be brought in to see if they help with predictions.
