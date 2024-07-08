@@ -127,6 +127,57 @@ The next step in this analysis is to add some second-order terms to see if they 
 **Ha:** At least one is non-zero.
 
 
+![Alt text](./Images/Table6.png)
+
+When we perform this test using SAS we get the following output.
+The p-value is significant which means that there is sufficient evidence to reject the null hypothesis and say that at least 1 of the coefficient of the square terms is non-zero. When we run the regression with all of the square terms we get the following output. 
+
+![Alt text](./Images/Table7.png)
+
+Given that 3 of the second-order terms are non-significant(as denoted by the p-value in the far right column) we can remove them and re-run the model.
+
+
+![Alt text](./Images/Table8.png)
+
+After removing the insignificant variables the model R-squared is .8882 which is a jump of almost 4% from the original first-order model. The next thing that could add some predictive power to the model is interaction terms, due to the scope of this project testing all of the interaction terms is not possible but I will test 2 interaction terms and see how they affect the model's performance. The 2 interaction terms I am testing are Nike and Lululemon as they are closely related in the type of products they produce i.e. sportswear, the second pair will be MGM Resorts and Wynn Resorts as again they cover the same customer base and potentially interact. To test whether or not there is an interaction we can use the built-in interaction plot in SAS. The interaction plot shows how one independent variable changes the prediction of the dependent variable as another independent variable also varies. If there is no interaction then the line produced should all have the same slope and directions. The output for both interaction terms is shown below.
+
+![Alt text](./Images/Interaction1.png) ![Alt text](./Images/Interaction2.png)
+
+We can see that in both plots there is a clear change in prediction from one variable given a change in the other showing that there is an interaction between the two variables when predicting the dependent variable. This indicates that adding these interaction terms to the model might help improve the performance as there is an interaction-type relationship.
+
+![Alt text](./Images/Table9.png)
+
+
+As we can see both of the interaction terms are statistically significant and therefore are kept in the model. Once we add the 2 interaction terms to the model we get the following complete model. 
+
+E(Ulta) = -992.65411 + 26.25259(BBWI) + 3.44117(LULU) + 28.82128(MGM) -5.79296(NKE) + 1.60998(RL) - 9.22255(WYNN) + 0.58940(YUM) -0.332676(BBWI^2) + 0.58108(MGM^2) + 0.09340(NKE^2) +0.22493(WYNN^2) -0.03203(LULU*NKE) -0.80242(MGM*WYNN)
+
+![Alt text](./Images/Table10.png)
+
+For all independent variables including all of the interaction and second-order terms, they are statistically significant. The summary statistics for the model are also all satisfactory with an adjusted R-squared of 0.9104 meaning that the model accounts for 91% of the variation in Ulta stock price. We can also see that the coefficient of variation is below the threshold of 10 which is desired.
+Now that we have our final model we need to check the residuals to ensure that the assumption of equal variances and normality holds true as it is required for the regression model to be valid.
+
+# Residual Analysis
+
+For the residual analysis, we need to ensure that the residuals have equal variances, as this is one of the key assumptions of linear regression. If this assumption is not met, the model cannot be used. To check for equal variances, we can use the residuals vs. predicted plot and inspect it for any patterns.
+
+## Residuals vs. Predicted Plot
+
+The residuals vs. predicted plot helps us visualize whether the residuals exhibit any systematic patterns. In an ideal scenario, the residuals should be randomly scattered around zero with no discernible pattern. If patterns are present, it suggests issues with equal variance (homoscedasticity) and could indicate that the model assumptions are violated.
+
+- **Random scatter**: Indicates homoscedasticity, meaning the residuals have equal variances.
+- **Patterns or funnel shapes**: Indicate heteroscedasticity, meaning the residuals do not have equal variances and the model may be inappropriate.
+
+By examining this plot, we can determine whether the assumption of equal variances holds and thus decide on the validity of our regression model.
+
+
+
+
+
+
+
+
+
 
 
 
