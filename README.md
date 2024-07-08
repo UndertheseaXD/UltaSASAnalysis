@@ -88,5 +88,46 @@ The next step involved checking for multicollinearity, where two variables contr
 
 ![Alt text](./Images/Table1.png)
 
+We can see that the highest VIF is 26.9 for Marriott so to fix this we need to remove this variable and re-run the model again.
+
+![Alt text](./Images/Table2.png)
+
+Removing Marriott had a very small effect on the overall VIFs of the model so we are going to add it back and remove the second-highest VIF to see if that is the variable causing the Inflation. The second-highest of the original was Amazon.
+
+![Alt text](./Images/Table3.png)
+
+We see that just removing Amazon didn't have much of an effect therefore the next step is to remove both of the variables and re-run the model.
+
+![Alt text](./Images/Table4.png)
+
+Removing both variables has reduced the VIF of most of the original high values but there are still a few that are above the boundary with Tapestry Inc. being the highest. The next step is to remove it and re-run the model.
+
+![Alt text](./Images/Table5.png)
+
+That did the trick! we now have the best-performing first-order model that has VIFs all below the threshold of 10 meaning that we do not have severe multicollinearity.
+
+# Regression Analysis
+
+Now, to determine the final first-order model to be regressed, four different metrics will be used to identify the best overall model. These metrics are R-squared, R-squared adjusted, predicted residual error sum of squares (PRESS), and Cp statistic. 
+
+In the table below, all four selection criteria were used to find the most parsimonious model with the best predictive power.
+
+| Metric Used | Model | R²   | R²-adj | CV  | MSE   |
+|-------------|-------|------|--------|-----|-------|
+| R²          | E(Ulta) = -428.14066 + 1.457(Yum) + 0.26232(Lulu) + 2.80312(Wynn) -3.03522(MGM) + 2.33971(NKE) + 0.82933(RL) + 2.29631(BBWI) | .8502 | .8458 | 4.54 | 465.82 |
+| PRESS       | E(Ulta) = -407.86918 + 2.14258(BBWI) + 0.31646(ETSY) + 0.28010(LULU) - 3.37789(MGM) + 2.06617(NKE) + 0.86693(RL) + 2.74372(WYNN) + 1.44195(Yum) | .8508 | .8458 | 4.54 | 447.71 |
+| CP          | E(Ulta) = -428.14066 + 2.29631(BBWI) + 0.26232(Lulu) -3.03522(MGM) + 2.33971(NKE) + 0.82933(RL) + 2.80312(Wynn) + 1.457(Yum) | .8502 | .8458 | 4.54 | 447.76 |
+| R²-Adj      | E(Ulta) = -407.86918 + 2.14258(BBWI) + 0.31646(ETSY) + 0.28010(LULU) - 3.37789(MGM) + 2.06617(NKE) + 0.86693(RL) + 2.74372(WYNN) + 1.44195(Yum) | .8508 | .8458 | 4.54 | 447.71 |
+
+Overall, the selection criteria arrived at very similar models, with R-squared and Cp returning the same model, and PRESS and R-squared adjusted returning the same model. The R-squared adjusted for all of the models is the same, and the CV is the same. The only thing that varies between the models is the MSE and R-squared, but the difference is so small it is negligible. Therefore, the model that will be selected is the one with the fewest variables, meaning it is the most parsimonious model. The model that will be moving forward is the one selected by Cp and R-squared, as it has one fewer variable than the other model but has the same performance.
+
+The next step in this analysis is to add some second-order terms to see if they add predictive power to the model. We can do this by using an F-test for all of the second-order term coefficients and testing whether at least one of them is non-zero.
+
+**H0:** β₉ = β₁₀ = β₁₁ = β₁₂ = β₁₃ = β₁₄ = β₁₅ = 0  
+**Ha:** At least one is non-zero.
+
+
+
+
 
 
