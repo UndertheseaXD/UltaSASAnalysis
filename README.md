@@ -168,8 +168,40 @@ The residuals vs. predicted plot helps us visualize whether the residuals exhibi
 - **Random scatter**: Indicates homoscedasticity, meaning the residuals have equal variances.
 - **Patterns or funnel shapes**: Indicate heteroscedasticity, meaning the residuals do not have equal variances and the model may be inappropriate.
 
-By examining this plot, we can determine whether the assumption of equal variances holds and thus decide on the validity of our regression model.
+By examining this plot, we can determine whether the assumption of equal variances holds and thus decide on the validity of our regression model. 
 
+
+![Alt text](./Images/Residuals.png)
+
+Starting with the residual vs predicted values(top left), there don’t seem to be any patterns and the points are scattered which is what we would expect given equal variances so the assumption holds. Moving to the Q-Q plot (middle left), we can check for the normality of the residuals. We expect the points to lie along a straight line given that the variances are normal, we do indeed see this pattern with some variance at the extremes which is to be expected. The pattern indicates that the variances are normally distributed which can be seen in the residual histogram (bottom left) which is normally distributed. The Fit-Mean plot shows that the spread of the residuals is small when compared to that of the fitted values. Looking at the Cook’s D plot we see that while some values are of high influence on the beta predictions, overall most singular data points don’t influence the model at large. Overall the residuals all look normal supporting the assumption of equal variance meaning that we can approve the model for further use as it meets all of the requirements needed to be considered a valid model.
+
+
+# Conclusion and Next Steps
+
+Now that we have ensured equal variances for the model, we can use the model below.
+
+\[ E(Ulta) = -992.65411 + 26.25259(BBWI) + 3.44117(LULU) + 28.82128(MGM) -5.79296(NKE) + 1.60998(RL) - 9.22255(WYNN) + 0.58940(YUM) -0.332676(BBWI^2) + 0.58108(MGM^2) + 0.09340(NKE^2) +0.22493(WYNN^2) -0.03203(LULU*NKE) -0.80242(MGM*WYNN) \]
+
+For all of the coefficients in the model, the practical interpretations in the context of the data are as follows, assuming all other variables are held constant:
+
+- **Intercept**: When all other stocks are 0, the expected value of ULTA's stock price is -992.65.
+- **Bath and Body Works (BBWI)**: For every increase of one dollar in BBWI's stock price, Ulta’s expected stock price increases by 26.25 dollars.
+- **Lululemon (LULU)**: For every increase of one dollar in LULU's stock price, Ulta’s expected stock price increases by 3.44 dollars.
+- **MGM Resorts (MGM)**: For every increase of one dollar in MGM's stock price, Ulta’s expected stock price increases by 28.82 dollars.
+- **Nike (NKE)**: For every increase of one dollar in NKE's stock price, Ulta’s expected stock price decreases by 5.79 dollars.
+- **Ralph Lauren (RL)**: For every increase of one dollar in RL's stock price, Ulta’s expected stock price increases by 1.61 dollars.
+- **Wynn Resorts (WYNN)**: For every increase of one dollar in WYNN's stock price, Ulta’s expected stock price decreases by 9.22 dollars.
+- **Yum! Brands (YUM)**: For every increase of one dollar in YUM's stock price, Ulta’s expected stock price increases by 0.59 dollars.
+- **Bath and Body Works squared (BBWI²)**: Every increase of one dollar in BBWI²'s stock price decreases Ulta’s expected stock price by 0.33 dollars.
+- **MGM Resorts squared (MGM²)**: Every increase of one dollar in MGM²'s stock price increases Ulta’s expected stock price by 0.58 dollars.
+- **Nike squared (NKE²)**: For every increase of one dollar in NKE²'s stock price, Ulta’s expected stock price increases by 0.09 dollars.
+- **Wynn Resorts squared (WYNN²)**: Every increase of one dollar in WYNN²'s stock price increases Ulta’s expected stock price by 0.22 dollars.
+- **Interaction term LULU*NKE**: Every increase of one dollar in the combined stock price of LULU and NKE decreases Ulta’s expected stock price by 0.03 dollars.
+- **Interaction term MGM*WYNN**: Every increase of one dollar in the combined stock price of MGM and WYNN decreases Ulta’s expected stock price by 0.8 dollars.
+
+Overall, the model performs well with an adjusted R-squared of 0.91, meaning that 91% of the variability of Ulta's stock price is accounted for by the model. The model's residuals support the assumption of equal variance as well as the normality of the residuals.
+
+The next steps for the model would be to investigate all remaining interaction terms to see if adding more would make the model more effective in predicting Ulta’s stock price. Additionally, starting with more potential independent variables in the initial variable selection might lead to better models emerging from the raw data rather than selection based on a shared customer base as in this analysis. This approach would take more time than this report was allotted but is fully possible if development is continued. The current state of the model is very accurate, with all key statistics performing well and all pitfalls checked for in the modeling process. To test the effectiveness of the model, it should be used on an out-of-sample data set to see how it performs on new data, as this would validate the model if it performs well.
 
 
 
